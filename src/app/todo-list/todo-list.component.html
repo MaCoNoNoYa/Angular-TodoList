@@ -1,0 +1,10 @@
+    <div class="containerToDos">
+        <h1>
+            To-Do-List
+        </h1>
+        <li *ngFor="let task of tasks" class="listElement">
+           <b id={{task.id}}>{{task.task}}</b> 
+           <input type="checkbox" class="done" (change)="checkDone($event, task.id)">
+           <img id="trash" src="../../assets/trash.png" alt="" (click)="deleteTask(task.id)">
+        </li>
+    </div>

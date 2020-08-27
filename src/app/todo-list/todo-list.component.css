@@ -1,0 +1,16 @@
+.containerToDos{
+    border: solid 1px black;
+    width: 740px;
+    height: 300px;
+}
+.listelement{
+    display: inline;
+}
+
+.done{
+    padding-left: 200px;
+}
+
+#trash{
+    height: 15px;
+}

@@ -8,6 +8,40 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <header class="headMain">
+    <div class="containerHeader">
+      <nav class="headerItem header1">
+        <button>
+          simple todo
+        </button>
+        <button>
+          todo
+        </button>
+      </nav>
+      <div class="headerItem header2">
+      <h1>
+        <b>
+        Web Grundausbildung
+      </b>
+      </h1>
+      </div>
+      <div class="headerItem header3">
+        <h2>
+          Inova:solutions AG
+          <img id="logo" src="assets/logo.jpeg" alt="">
+        </h2>
+      </div>
+    </div>
+    </header>
+    <center>
+      <article class="newToDo">
+        <input class="inputnew" type="text" placeholder="Neues ToDo...">
+        <button>
+          <img class="imgadd" src="assets/plus.png" alt="">
+         <b> Hinzufügen</b>
+        </button>
+      </article>
+      <app-root></app-root>
+    </center>
 </body>
 </html>

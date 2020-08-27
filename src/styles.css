@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+.containerHeader{
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    background-color: #F2F2F2;
+}
+
+#logo{
+    width: 170px;
+}
+
+.header1{
+    width: 20%;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+}
+.header2{
+    width: 50%;
+    font-size: 20px;
+}
+
+.header3{
+    display: inline;
+}
+
+.newToDo{
+    width: 700px;
+    height: 50px;
+    margin: 20px;
+    align-items: center;
+    display: flex;
+    padding: 20px;
+    background-color: #F2F2F2;
+}
+
+.inputnew{
+    width: 500px;
+    margin-right: 20px;
+}
+
+.imgadd{
+    width: 10px;
+}
