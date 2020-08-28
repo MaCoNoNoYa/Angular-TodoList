@@ -25,21 +25,3 @@
     display: inline;
 }
 
-.newToDo{
-    width: 700px;
-    height: 50px;
-    margin: 20px;
-    align-items: center;
-    display: flex;
-    padding: 20px;
-    background-color: #F2F2F2;
-}
-
-.inputnew{
-    width: 500px;
-    margin-right: 20px;
-}
-
-.imgadd{
-    width: 10px;
-}
