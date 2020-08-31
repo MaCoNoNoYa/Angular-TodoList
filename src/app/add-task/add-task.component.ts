@@ -22,5 +22,4 @@ test: TodoListComponent;
     this.taskService.addTask(this.input.nativeElement.value);
     this.taskAdd.emit();
   }
-
 }

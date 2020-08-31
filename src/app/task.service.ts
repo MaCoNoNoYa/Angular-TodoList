@@ -81,6 +81,21 @@ export class TaskService {
     console.log(id);
     this.saveTasks(tasks);
 }
+/**
+ * Speichert Tasks im Localstorage als done, sobald diese markiert werden
+ * @param id Id des markierten Tasks
+ */
+public markAsDone(id: number): void{
+  const tasks = this.loadTasks();
+  tasks[id - 1].done = true;
+  this.saveTasks(tasks);
+}
+
+public markAsToDo(id: number): void{
+  const tasks = this.loadTasks();
+  tasks[id - 1].done = false;
+  this.saveTasks(tasks);
+}
 
 }
 
