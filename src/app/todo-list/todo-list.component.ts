@@ -20,9 +20,7 @@ export class TodoListComponent implements OnInit {
    this.tasks.forEach(task => {
       console.log(task.done);
       if (task.done){
-        console.log(task.task);
         const id = (task.id).toString();
-        console.log(id);
         document.getElementById(id).style.textDecoration = 'line-through';
         document.getElementById(task.task).click();
 
@@ -34,7 +32,6 @@ export class TodoListComponent implements OnInit {
    */
   public updateTasks(): void {
     this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
-    console.log(this.tasks[2]);
   }
   /**
    * Reagiert sobald der Task als erledigt markiert wurde,
@@ -46,7 +43,6 @@ export class TodoListComponent implements OnInit {
   public checkDone(element: HTMLInputElement, id: string): void {
     var idNum = parseInt(id);
     if (element.checked) {
-      console.log(id);
       document.getElementById(id).style.textDecoration = 'line-through';
       this.taskService.markAsDone(idNum);
     }
@@ -61,7 +57,12 @@ export class TodoListComponent implements OnInit {
    */
   public deleteTask(id: number) {
     this.taskService.deleteTask(id);
-
-  }
+    this.tasks.splice(id - 1, 1);
+    this.tasks.forEach(task => {
+      if (task.id > id){
+        task.id = task.id - 1;
+      }
+  });
+}
 
 }

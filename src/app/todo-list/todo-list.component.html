@@ -5,8 +5,7 @@
         <li *ngFor="let task of tasks" class="listElement">
            <b id={{task.id}}>{{task.task}}</b> 
            <input type="checkbox" class="done" id={{task.task}} (change)="checkDone($event.target, task.id)">
-           <a href="reload">
+           
                <img id="trash" src="../../assets/trash.png" alt="" (click)="deleteTask(task.id)">
-           </a>
         </li>
     </div>
