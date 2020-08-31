@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, EventEmitter } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
 import { Task } from './task';
 import { Tasks } from './mock-tasks';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
@@ -9,6 +9,8 @@ import { isNull } from '@angular/compiler/src/output/output_ast';
 })
 export class TaskService {
   private localStorageKey = 'savedTasks';
+  public invokeFirstComponentFunction = new EventEmitter();
+  public subsVar: Subscription;
   private localStorageCounter = 'counterkey';
   private counter = this.loadCounter();
   constructor() { }
@@ -39,6 +41,7 @@ export class TaskService {
     }
     console.log(this.counter);
     this.saveTasks(tasks);
+    this.invokeFirstComponentFunction.emit();
   }
 /**
  * Speichert die Tasks in den lokalen Speicher
@@ -90,7 +93,10 @@ public markAsDone(id: number): void{
   tasks[id - 1].done = true;
   this.saveTasks(tasks);
 }
-
+/**
+ * Nimmt dem ausgewählten Task die "Done" markierung weg
+ * @param id Id des ausgewählten Tasks
+ */
 public markAsToDo(id: number): void{
   const tasks = this.loadTasks();
   tasks[id - 1].done = false;

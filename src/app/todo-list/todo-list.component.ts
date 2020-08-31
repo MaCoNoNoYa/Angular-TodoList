@@ -13,6 +13,12 @@ export class TodoListComponent implements OnInit {
   constructor(private taskService: TaskService) { }
 
   public ngOnInit(): void {
+    if (this.taskService.subsVar === undefined) {
+      this.taskService.subsVar = this.taskService.
+      invokeFirstComponentFunction.subscribe((name: string) => {
+        this.updateTasks();
+      });
+    }
     this.updateTasks();
   }
 
