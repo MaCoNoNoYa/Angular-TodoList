@@ -1,7 +1,7 @@
 <article class="newToDo">
     <input id="inputnew" #inputnew type="text" placeholder="Neues ToDo...">
     <!-- <a href="reload"> -->
-    <button (click)="addTask()">
+    <button (click)="addTask(inputnew.value)">
       <img class="imgadd" src="assets/plus.png" alt="">
      <b> Hinzufügen</b>
     </button>

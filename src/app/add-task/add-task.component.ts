@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from '../task.service';
 import { TodoListComponent } from '../todo-list/todo-list.component';
 @Component({
@@ -6,20 +6,21 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent implements OnInit {
-  @Output()
-  @ViewChild('inputnew') input: ElementRef; 
+export class AddTaskComponent {
+/**
+ * TaskAdd Variable wird erstellt, diese fungiert als EventEmitter.
+ */
   public taskAdd: EventEmitter<void> = new EventEmitter();
-test: TodoListComponent;
+/**
+ * taskService wird im Constructor benötigt, um Funktionen zu nutzen.
+ * @param taskService TaskService Instanz
+ */
   constructor(private taskService: TaskService) { }
-
-  ngOnInit(): void {
-  }
 /**
  * Fügt Task via Service hinzu
  */
-  public addTask(){
-    this.taskService.addTask(this.input.nativeElement.value);
+  public addTask(input: string): void{
+    this.taskService.addTask(input);
     this.taskAdd.emit();
   }
 }

@@ -7,6 +7,9 @@ import { isNull } from '@angular/compiler/src/output/output_ast';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Benötigte Variablen werden definiert.
+ */
 export class TaskService {
   private localStorageKey = 'savedTasks';
   public invokeFirstComponentFunction = new EventEmitter();
@@ -68,14 +71,14 @@ export class TaskService {
  * löscht den Task aus dem Array und speicher das neue Array anschliessend wieder ab
  * @param id Id des Tasks, welcher gelöscht werden soll.
  */
-  public deleteTask(id : number) : void{
+  public deleteTask(id: number): void{
     if (this.counter && this.counter > 0) {
       this.counter = this.counter - 1;
     }
     else{
       this.counter = 0;
     }
-    let tasks = this.loadTasks();
+    const tasks = this.loadTasks();
     tasks.splice(id - 1, 1);
     tasks.forEach(task => {
     if (task.id > id){
@@ -86,21 +89,18 @@ export class TaskService {
     this.saveTasks(tasks);
 }
 /**
- * Speichert Tasks im Localstorage als done, sobald diese markiert werden
- * @param id Id des markierten Tasks
+ * Checkt ob Task als Done markiert ist, falls ja wird er als Done markiert. Falls nicht wird die Markierung weggenommen.
+ * @param id ID des zu verändernden Tasks
+ * @param isDone ist neu Done oder nicht
  */
-public markAsDone(id: number): void{
+public markAsDone(id: number, isDone: boolean): void{
   const tasks = this.loadTasks();
-  tasks[id - 1].done = true;
-  this.saveTasks(tasks);
-}
-/**
- * Nimmt dem ausgewählten Task die "Done" markierung weg
- * @param id Id des ausgewählten Tasks
- */
-public markAsToDo(id: number): void{
-  const tasks = this.loadTasks();
-  tasks[id - 1].done = false;
+  if (isDone){
+    tasks[id - 1].done = true;
+  }
+  else{
+    tasks[id - 1].done = false;
+  }
   this.saveTasks(tasks);
 }
 

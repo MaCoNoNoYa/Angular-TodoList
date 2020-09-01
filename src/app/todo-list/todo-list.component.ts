@@ -8,11 +8,16 @@ import { TaskService } from '../task.service';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-
   public tasks: Task[];
+  /**
+   * Erstellt Variable loaded.
+   * wird verwendet damit erst beim zweiten ausführen von UpdateTask die ToDoList abgecheckt wird.
+   */
   private loaded = false;
   constructor(private taskService: TaskService) { }
-
+/**
+ * Bei Erstellung wird zum EventEmitter subscribed, sodass dieser empfangen werden kann.
+ */
   public ngOnInit(): void {
     if (this.taskService.subsVar === undefined) {
       this.taskService.subsVar = this.taskService.
@@ -22,7 +27,9 @@ export class TodoListComponent implements OnInit {
     }
     this.updateTasks();
   }
-
+/**
+ * Führt Funktion checkOffDoneTasks aus, checkt die erledigten Tasks ab.
+ */
   public ngAfterViewInit(): void {
     this.checkOffDoneTasks();
   }
@@ -31,8 +38,6 @@ export class TodoListComponent implements OnInit {
    */
   public checkOffDoneTasks(): void {
     this.tasks.forEach(task => {
-      console.log(task.done);
-      console.log(task.task);
       if (task.done) {
         const id = (task.id).toString();
         document.getElementById(id).style.textDecoration = 'line-through';
@@ -69,21 +74,21 @@ export class TodoListComponent implements OnInit {
    * @param id Id des Listenelementes, in welchem sich der Task befindet
    */
   public checkDone(element: HTMLInputElement, id: string): void {
-    var idNum = parseInt(id);
+    const idNum = parseInt(id, 0);
     if (element.checked) {
       document.getElementById(id).style.textDecoration = 'line-through';
-      this.taskService.markAsDone(idNum);
+      this.taskService.markAsDone(idNum, true);
     }
     else {
       document.getElementById(id).style.textDecoration = 'none';
-      this.taskService.markAsToDo(idNum);
+      this.taskService.markAsDone(idNum, false);
     }
   }
   /**
    * gibt dem Service die ID des Elements mit, sodass der dazugehörige Task gelöscht werden kann.
    * @param id Id des zu löschenden Elementes
    */
-  public deleteTask(id: number) {
+  public deleteTask(id: number): void {
     this.taskService.deleteTask(id);
     this.tasks.splice(id - 1, 1);
     this.tasks.forEach(task => {
