@@ -42,6 +42,7 @@ export class TaskService {
     console.log(this.counter);
     this.saveTasks(tasks);
     this.invokeFirstComponentFunction.emit();
+    console.log(tasks);
   }
 /**
  * Speichert die Tasks in den lokalen Speicher
