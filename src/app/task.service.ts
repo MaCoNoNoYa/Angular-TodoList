@@ -12,8 +12,6 @@ import { isNull } from '@angular/compiler/src/output/output_ast';
  */
 export class TaskService {
   private localStorageKey = 'savedTasks';
-  public invokeFirstComponentFunction = new EventEmitter();
-  public subsVar: Subscription;
   private localStorageCounter = 'counterkey';
   private counter = this.loadCounter();
   constructor() { }
@@ -44,7 +42,6 @@ export class TaskService {
     }
     console.log(this.counter);
     this.saveTasks(tasks);
-    this.invokeFirstComponentFunction.emit();
     console.log(tasks);
   }
 /**

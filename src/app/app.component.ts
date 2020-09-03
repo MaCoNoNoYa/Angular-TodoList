@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
-import { TaskService } from './task.service';
-
+import { Component, ViewChild } from '@angular/core';
+import { TodoListComponent} from './todo-list/todo-list.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ToDoList';
-constructor(private taskService: TaskService){}
+  @ViewChild(TodoListComponent) todoList:TodoListComponent;
 
-  public onItemAdd(): void{
-    this.taskService.getTasks
+  title = 'ToDoList';
+
+  public updateChild(): void{
+    this.todoList.updateTasks();
   }
 }
 

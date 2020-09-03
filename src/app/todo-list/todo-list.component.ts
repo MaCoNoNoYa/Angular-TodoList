@@ -19,12 +19,6 @@ export class TodoListComponent implements OnInit {
  * Bei Erstellung wird zum EventEmitter subscribed, sodass dieser empfangen werden kann.
  */
   public ngOnInit(): void {
-    if (this.taskService.subsVar === undefined) {
-      this.taskService.subsVar = this.taskService.
-        invokeFirstComponentFunction.subscribe((name: string) => {
-          this.updateTasks();
-        });
-    }
     this.updateTasks();
   }
 /**

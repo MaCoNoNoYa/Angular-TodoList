@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, ElementRef } from '@angular/core';
 import { TaskService } from '../task.service';
 import { TodoListComponent } from '../todo-list/todo-list.component';
 @Component({
@@ -10,7 +10,7 @@ export class AddTaskComponent {
 /**
  * TaskAdd Variable wird erstellt, diese fungiert als EventEmitter.
  */
-  public taskAdd: EventEmitter<void> = new EventEmitter();
+  @Output() updateList = new EventEmitter();
 /**
  * taskService wird im Constructor benötigt, um Funktionen zu nutzen.
  * @param taskService TaskService Instanz
@@ -21,6 +21,6 @@ export class AddTaskComponent {
  */
   public addTask(input: string): void{
     this.taskService.addTask(input);
-    this.taskAdd.emit();
+    this.updateList.emit();
   }
 }
